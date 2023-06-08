@@ -1,16 +1,19 @@
 using Api;
 using Api.Utils;
+using AutoWrapper;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Repository;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
 services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
+services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-//services.AddScoped<ProjectManagementContext>();
 // db config
 services.AddDbContext<ProjectManagementContext>(options =>
 {
@@ -18,7 +21,6 @@ services.AddDbContext<ProjectManagementContext>(options =>
     Console.WriteLine(settings);
     options.UseSqlServer(settings!.Value.ConnectionStrings.FUProjectManagement);
 });
-
 
 // app api
 services.AddCors(options =>
@@ -34,6 +36,15 @@ services.AddControllers(options =>
 {
     options.Filters.Add<ValidateModelStateFilter>();
 });
+services.AddControllers().AddOData(
+    option => option.Select()
+                    .Filter()
+                    .Count()
+                    .OrderBy()
+                    .Expand()
+                    .SetMaxTop(100)
+                    .AddRouteComponents("odata", ODataConfiguration.GetEdmModel())
+);
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
@@ -48,6 +59,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { IsApiOnly = false, ShowIsErrorFlagForSuccessfulResponse = true });
 
 app.UseHttpsRedirection();
 
