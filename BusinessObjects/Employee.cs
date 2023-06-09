@@ -45,6 +45,6 @@ public class Employee
 
 public enum Status
 {
-    Active,
-    Inactive
+    Inactive,
+    Active
 }

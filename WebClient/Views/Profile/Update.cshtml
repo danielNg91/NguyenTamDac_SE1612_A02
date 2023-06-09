@@ -1,0 +1,74 @@
+﻿@model WebClient.Models.UpdateEmp
+
+@{
+    ViewData["Title"] = "Update Employee";
+}
+
+@if (TempData["Message"] != null)
+{
+    <h3 style="color:red">@TempData["Message"]</h3>
+}
+
+<h1>Update</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div>
+                <label asp-for="@Model.Password" class="form-label"></label>
+                <input asp-for="@Model.Password" class="form-control" readonly />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.FullName" class="form-label"></label>
+                <input asp-for="@Model.FullName" class="form-control" />
+                <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.Skills" class="form-label"></label>
+                <input asp-for="@Model.Skills" class="form-control" />
+                <span asp-validation-for="@Model.Skills" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.Telephone" class="form-label"></label>
+                <input asp-for="@Model.Telephone" class="form-control" />
+                <span asp-validation-for="@Model.Telephone" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.Address" class="form-label"></label>
+                <input asp-for="@Model.Address" class="form-control" />
+                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.Status" class="form-label"></label>
+                <input asp-for="@Model.Status" class="form-control" />
+                <span asp-validation-for="@Model.Status" class="text-danger"></span>
+            </div>           
+            
+            <div>
+                <label asp-for="@Model.DepartmentID" class="form-label"></label>
+                <input asp-for="@Model.DepartmentID" class="form-control" />
+                <span asp-validation-for="@Model.DepartmentID" class="text-danger"></span>
+            </div>
+
+            <div class="mt-1">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back To List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -23,11 +23,13 @@ services.AddDbContext<ProjectManagementContext>(options =>
 });
 
 // app api
+const string CORS_POLICY = "CorsPolicy";
 services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", builder =>
+    options.AddPolicy(name: CORS_POLICY, builder =>
     {
-        builder.AllowAnyOrigin()
+        var settings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>();
+        builder.WithOrigins(settings!.Value.FrontendUrl)
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
@@ -50,6 +52,7 @@ services.AddSwaggerGen();
 
 // app specs
 services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+services.AddSingleton<AuthenticationEvent>();
 
 var app = builder.Build();
 
@@ -64,7 +67,9 @@ app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { IsApiOnly = false
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors(CORS_POLICY);
 
 app.MapControllers();
 
