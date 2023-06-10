@@ -6,6 +6,7 @@ namespace WebClient.Models;
 
 public class UpdateEmp: IMapFrom<Employee>
 {
+    public string? EmailAddress { get; set; }
     public string? FullName { get; set; }
     public string? Skills { get; set; }
     public string? Telephone { get; set; }

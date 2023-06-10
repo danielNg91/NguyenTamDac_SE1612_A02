@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<BusinessObjects.Employee>;
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employees</h1>
+<hr />
+
+<div>
+    <a asp-action="Create">Create New</a>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> EmployeeID </th>
+                <th> EmailAddress </th>
+                <th> Password </th>
+                <th> FullName </th>
+                <th> Skills </th>
+                <th> Telephone </th>
+                <th> Address </th>
+                <th> Status </th>
+                <th> DepartmentID </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(_ => item.EmployeeID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.Skills)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.Telephone)
+                    </td>                    
+                    <td>
+                        @Html.DisplayFor(_ => item.Address)
+                    </td>        
+                    <td>
+                        @Html.DisplayFor(_ => item.Status)
+                    </td>        <td>
+                        @Html.DisplayFor(_ => item.DepartmentID)
+                    </td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@item.EmployeeID">Detail</a>
+                        <a asp-action="Update" asp-route-id="@item.EmployeeID">Update</a>
+                        <a asp-action="Delete" asp-route-id="@item.EmployeeID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -7,27 +7,27 @@ using Repository;
 
 namespace Api.Controllers;
 
-[Route("api/v1/participates")]
-public class ParticipateController : BaseController
+[Route("api/v1/departments")]
+public class DepartmentController : BaseController
 {
-    private readonly IRepository<ParticipatingProject> _parRepo;
+    private readonly IRepository<Department> _deptRepo;
 
-    public ParticipateController(IRepository<ParticipatingProject> parRepo)
+    public DepartmentController(IRepository<Department> deptRepo)
     {
-        _parRepo = parRepo;
+        _deptRepo = deptRepo;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetPars()
+    public async Task<IActionResult> GetDepts()
     {
-        return Ok(await _parRepo.ToListAsync());
+        return Ok(await _deptRepo.ToListAsync());
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreatePar([FromBody] CreateParticipate req)
+    public async Task<IActionResult> CreateDept([FromBody] CreateDept req)
     {
-        var entity = Mapper.Map(req, new ParticipatingProject());
-        await _parRepo.CreateAsync(entity);
+        var entity = Mapper.Map(req, new Department());
+        await _deptRepo.CreateAsync(entity);
         return StatusCode(StatusCodes.Status201Created);
     }
 }

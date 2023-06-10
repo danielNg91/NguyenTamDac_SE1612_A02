@@ -1,0 +1,56 @@
+﻿@model WebClient.Models.CreateProject;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (TempData["Message"] != null)
+{
+    <h3 style="color:red">@TempData["Message"]</h3>
+}
+
+<h1>Create</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div>
+                <label asp-for="@Model.ProjectName" class="form-label"></label>
+                <input asp-for="@Model.ProjectName" class="form-control" />
+                <span asp-validation-for="@Model.ProjectName" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.ProjectDescription" class="form-label"></label>
+                <input asp-for="@Model.ProjectDescription" class="form-control" />
+                <span asp-validation-for="@Model.ProjectDescription" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.EstimatedStartDate" class="form-label"></label>
+                <input asp-for="@Model.EstimatedStartDate" class="form-control" />
+                <span asp-validation-for="@Model.EstimatedStartDate" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="@Model.ExpectedEndDate" class="form-label"></label>
+                <input asp-for="@Model.ExpectedEndDate" class="form-control" />
+                <span asp-validation-for="@Model.ExpectedEndDate" class="text-danger"></span>
+            </div>
+
+            <div class="mt-1">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back To List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

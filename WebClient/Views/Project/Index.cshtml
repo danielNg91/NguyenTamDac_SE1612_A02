@@ -1,0 +1,55 @@
+﻿@model List<BusinessObjects.CompanyProject>;
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>CompanyProjects</h1>
+<hr />
+
+<div>
+    <a asp-action="Create">Create New</a>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> CompanyProjectID </th>
+                <th> ProjectName </th>
+                <th> ProjectDescription </th>
+                <th> EstimatedStartDate </th>
+                <th> ExpectedEndDate </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(_ => item.CompanyProjectID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.ProjectDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.EstimatedStartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => item.ExpectedEndDate)
+                    </td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@item.CompanyProjectID">Detail</a>
+                        <a asp-action="Update" asp-route-id="@item.CompanyProjectID">Update</a>
+                        <a asp-action="Delete" asp-route-id="@item.CompanyProjectID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

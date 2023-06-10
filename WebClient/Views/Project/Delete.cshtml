@@ -1,0 +1,48 @@
+﻿@model BusinessObjects.CompanyProject;
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@if (TempData["Message"] != null)
+{
+    <h3 style="color:red">@TempData["Message"]</h3>
+}
+
+<h1>Delete</h1>
+<hr />
+<h3 class="text-warning">Are you sure to delete this?</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.CompanyProjectID) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.CompanyProjectID) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ProjectName) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ProjectName) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ProjectDescription) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ProjectDescription) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.EstimatedStartDate) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.EstimatedStartDate) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ExpectedEndDate) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ExpectedEndDate) </dd>
+    </dl>
+
+    <form method="post" asp-action="DeleteProj" asp-route-id="@Model.CompanyProjectID">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index"> Back </a>
+</div>

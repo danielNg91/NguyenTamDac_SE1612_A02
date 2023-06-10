@@ -14,6 +14,8 @@ public class BaseController : Controller
     protected readonly string LoginUrl;
     protected readonly string ProfileUrl;
     protected readonly string EmployeeUrl;
+    protected readonly string DepartmentUrl;
+    protected readonly string ProjectUrl;
     protected readonly IApiClient ApiClient;
 
     public BaseController(IOptions<AppSettings> appSettings, IApiClient apiClient)
@@ -23,6 +25,8 @@ public class BaseController : Controller
         LoginUrl = _appSettings.LoginUrl;
         ProfileUrl = _appSettings.ProfileUrl;
         EmployeeUrl = _appSettings.EmployeeUrl;
+        DepartmentUrl = _appSettings.DepartmentUrl;
+        ProjectUrl = _appSettings.ProjectUrl;
         ApiClient = apiClient;
     }
 

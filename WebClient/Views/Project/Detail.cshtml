@@ -1,0 +1,37 @@
+﻿@model BusinessObjects.CompanyProject;
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.CompanyProjectID) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.CompanyProjectID) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ProjectName) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ProjectName) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ProjectDescription) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ProjectDescription) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.EstimatedStartDate) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.EstimatedStartDate) </dd>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ExpectedEndDate) </dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.ExpectedEndDate) </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index"> Back </a>
+</div>
