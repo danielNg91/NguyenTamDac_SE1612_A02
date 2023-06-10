@@ -2,12 +2,15 @@
 using Application.Exceptions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace Api.Controllers;
 
+[EnableQuery]
 [Route("[controller]")]
 [ApiController]
-public class BaseController : ControllerBase
+public class BaseController : ODataController
 {
     private IMapper _mapper;
     protected IMapper Mapper => _mapper ??= HttpContext.RequestServices.GetService<IMapper>();
