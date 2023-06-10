@@ -9,4 +9,5 @@ public class AppSettings
     public string EmployeeUrl { get; set; }
     public string DepartmentUrl { get; set; }
     public string ProjectUrl { get; set; }
+    public string ParticipantUrl { get; set; }
 }

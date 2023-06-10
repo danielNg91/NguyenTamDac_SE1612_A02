@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models;
 
-public class CreateParticipate : IMapTo<ParticipatingProject>
+public class CreateParticipant : IMapTo<ParticipatingProject>
 {
-
-    [Required]
-    public int CompanyProjectID { get; set; }
 
     [Required]
     public int EmployeeID { get; set; }

@@ -32,6 +32,44 @@
     </dl>
 </div>
 
+<h2>Participants</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> CompanyProjectID </th>
+                <th> EmployeeID </th>
+                <th> StartDate </th>
+                <th> EndDate </th>
+                <th> ProjectRole </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ParticipatingProjects)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.CompanyProjectID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.EmployeeID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ProjectRole)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 <div>
     <a asp-action="Index"> Back </a>
 </div>

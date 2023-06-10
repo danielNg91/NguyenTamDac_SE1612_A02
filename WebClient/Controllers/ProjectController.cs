@@ -9,24 +9,31 @@ using WebClient.Utils;
 namespace WebClient.Controllers;
 
 
-[Authorize(Roles = PolicyName.ADMIN)]
 public class ProjectController : BaseController
 {
     public ProjectController(IOptions<AppSettings> appSettings, IApiClient apiClient) : base(appSettings, apiClient)
     {
     }
 
+    [Authorize(Roles = $"{PolicyName.ADMIN},{PolicyName.USER}")]
     public async Task<IActionResult> Index()
     {
+        if (!IsAdmin)
+        {
+            var projs = await ApiClient.GetAsync<List<CompanyProject>>($"{ParticipantUrl}?empId={CurrentUserId}");
+            return View(projs);
+        }
         var entitites = await ApiClient.GetAsync<List<CompanyProject>>(ProjectUrl);
         return View(entitites);
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     public async Task<IActionResult> Create()
     {
         return View();
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     [HttpPost]
     public async Task<IActionResult> Create(CreateProject req)
     {
@@ -43,18 +50,21 @@ public class ProjectController : BaseController
         }
     }
 
+    [Authorize(Roles = $"{PolicyName.ADMIN},{PolicyName.USER}")]
     public async Task<IActionResult> Detail(int id)
     {
         var entity = await ApiClient.GetAsync<CompanyProject>($"{ProjectUrl}/{id}");
         return View(entity);
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     public async Task<IActionResult> Update(int id)
     {
         var entity = await ApiClient.GetAsync<CompanyProject>($"{ProjectUrl}/{id}");
         return View(Mapper.Map(entity, new UpdateProject()));
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     [HttpPost]
     public async Task<IActionResult> Update(int id, UpdateProject req)
     {
@@ -70,12 +80,14 @@ public class ProjectController : BaseController
         }
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     public async Task<IActionResult> Delete(int id)
     {
         var entity = await ApiClient.GetAsync<CompanyProject>($"{ProjectUrl}/{id}");
         return View(entity);
     }
 
+    [Authorize(Roles = PolicyName.ADMIN)]
     [HttpPost]
     public async Task<IActionResult> DeleteProj(int id)
     {
