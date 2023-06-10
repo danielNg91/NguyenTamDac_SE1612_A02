@@ -1,4 +1,5 @@
 ﻿using Api.Models;
+using Api.Models;
 using Application.Exceptions;
 using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;

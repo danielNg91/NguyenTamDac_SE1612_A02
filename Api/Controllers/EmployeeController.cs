@@ -61,7 +61,7 @@ public class EmployeeController : BaseController
     public async Task<IActionResult> UpdateEmp(int id, [FromBody] UpdateEmp req)
     {
         var target = await _empRepo.FoundOrThrow(c => c.EmployeeID == id, new NotFoundException());
-        Employee entity = Mapper.Map(req, target);
+        var entity = Mapper.Map(req, target);
         await _empRepo.UpdateAsync(entity);
         return StatusCode(StatusCodes.Status204NoContent);
     }
