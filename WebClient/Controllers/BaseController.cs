@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Collections;
 using System.Text.Json;
@@ -24,6 +25,9 @@ public class BaseController : Controller
         EmployeeUrl = _appSettings.EmployeeUrl;
         ApiClient = apiClient;
     }
+
+    private IMapper _mapper;
+    protected IMapper Mapper => _mapper ??= HttpContext.RequestServices.GetService<IMapper>();
 
     public int CurrentUserId => GetCurrentUserId();
     

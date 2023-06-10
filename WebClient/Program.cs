@@ -1,3 +1,4 @@
+using System.Reflection;
 using WebClient;
 using WebClient.Datasource;
 
@@ -10,6 +11,7 @@ builder.Services.AddControllersWithViews();
 services.AddAppAuthentication();
 services.AddAppAuthorization();
 services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
+services.AddAutoMapper(Assembly.GetExecutingAssembly());
 services.AddScoped(typeof(IApiClient), typeof(ApiClient));
 
 var app = builder.Build();

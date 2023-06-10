@@ -23,8 +23,9 @@ public class ProfileController : BaseController
 
     public async Task<IActionResult> Update()
     {
-        var user = await ApiClient.GetAsync<Employee>(ProfileUrl);
-        return View(user);
+        var user = await ApiClient.GetAsync<Employee>($"{EmployeeUrl}/{CurrentUserId}");
+        
+        return View(Mapper.Map(user, new UpdateEmp()));
     }
 
     [HttpPost]

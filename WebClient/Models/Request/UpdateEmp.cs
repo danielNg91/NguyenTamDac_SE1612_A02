@@ -1,9 +1,10 @@
 ﻿using BusinessObjects;
+using WebClient.Mappings;
 
 namespace WebClient.Models;
 
 
-public class UpdateEmp
+public class UpdateEmp: IMapFrom<Employee>
 {
     public string? FullName { get; set; }
     public string? Skills { get; set; }
